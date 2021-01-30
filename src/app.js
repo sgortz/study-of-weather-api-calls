@@ -30,6 +30,39 @@ let monthName = [
   "December",
 ];
 
+let forecast = [
+  "Clear",
+  "Smoke",
+  "Clouds",
+  "Haze",
+  "Mist",
+  "Fog",
+  "Drizzle",
+  "Rain",
+  "Snow",
+  "Ash",
+  "Dust",
+  "Sand",
+  "Thunderstorm",
+  "Tornado",
+  "Squall",
+];
+
+let colors = [
+  //clear sky daylight
+  "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
+  //clear sky nighttime -- font color whitesmoke
+  "linear-gradient(to top, #09203f 0%, #537895 100%)",
+  //rainy or cloudy
+  "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
+  //sand, Dust
+  "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);",
+  //thunderstorm
+  "linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%)",
+  // Morning
+  "linear-gradient(to top, #a8edea 0%, #fed6e3 100%)",
+];
+
 let now = new Date();
 let weekday = days[now.getDay()];
 let dateMonth = now.getDate();
@@ -258,4 +291,4 @@ searchButton.addEventListener("click", handleSearch);
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrentButton);
 
-search("Rio de Janeiro");
+search("New York");

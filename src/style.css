@@ -47,8 +47,9 @@ footer {
 
 .card {
   margin: 40px, 40px, 0;
-  /* BACKGROUND WHEN MORNING */
   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  /* BACKGROUND WHEN MORNING 
+  */
   /* BACKGROUND COLOR IF SUNSET OR SUNRISE
   background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
   /* BACKGROUND COLOR IF CLOUDY OR RAINY
