@@ -257,3 +257,5 @@ searchButton.addEventListener("click", handleSearch);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrentButton);
+
+search("Rio de Janeiro");
