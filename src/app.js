@@ -13,7 +13,6 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday",
 ];
 
 let monthName = [
@@ -67,6 +66,42 @@ sixthDay.innerHTML = days[now.getDay() + 6];
 function getForecast(response) {
   console.log(response.data);
 
+  let weatherIcon = document.querySelector("#weather-icon");
+  weatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.current.weather[0].icon}@2x.png`
+  );
+  weatherIcon.setAttribute(
+    "alt",
+    `${response.data.current.weather[0].description}`
+  );
+
+  document.querySelector("#weather-description").innerHTML =
+    response.data.current.weather[0].description;
+
+  let mainTemperature = document.querySelector("#temperature");
+  mainTemperature.innerHTML = `${Math.round(response.data.current.temp)}˚`;
+
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.current.feels_like
+  );
+
+  document.querySelector("#temp-hi").innerHTML = Math.round(
+    response.data.daily[0].temp.max
+  );
+
+  document.querySelector("#temp-lo").innerHTML = Math.round(
+    response.data.daily[0].temp.min
+  );
+
+  document.querySelector("#humidity").innerHTML =
+    response.data.current.humidity;
+
+  document.querySelector(".wind-speed").innerHTML = Math.round(
+    `${response.data.current.wind_speed}`
+  );
+
+  // Updating forecast of the week
   let nextDayIcon = document.querySelector("#next-day-icon");
   nextDayIcon.setAttribute(
     "src",
@@ -193,13 +228,26 @@ function handleSearch(event) {
 }
 
 function showPosition(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+
+  let forecastapiKey = "87ea285fd528486819f9be1f3ac61b1d";
+  let forecastapiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&units=metric&appid=${forecastapiKey}`;
+
+  axios.get(forecastapiUrl).then(getForecast);
+
+  let apiKey = "4cea025489823b86da62835c695c95d3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(function (response) {
+    document.querySelector(
+      "h1"
+    ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  });
 }
 
 function handleCurrentButton(event) {
   event.preventDefault();
-  alert("Hi");
 
   navigator.geolocation.getCurrentPosition(showPosition);
 }
