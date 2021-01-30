@@ -164,10 +164,10 @@ function getForecast(response) {
 }
 
 function getCityCoords(response) {
-  console.log(response.data);
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+
   let cityLatitude = response.data.coord.lat;
   let cityLongitude = response.data.coord.lon;
 
@@ -192,5 +192,20 @@ function handleSearch(event) {
   search(searchInput.value);
 }
 
-let form = document.querySelector("#form-city");
-form.addEventListener("submit", handleSearch);
+function showPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
+
+function handleCurrentButton(event) {
+  event.preventDefault();
+  alert("Hi");
+
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+let searchButton = document.querySelector("#search-button");
+searchButton.addEventListener("click", handleSearch);
+
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", handleCurrentButton);
